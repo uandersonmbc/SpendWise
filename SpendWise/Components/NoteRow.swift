@@ -5,13 +5,14 @@ struct NoteRow: View {
     @Environment(\.colorScheme) var colorScheme
     
     var body: some View {
-        NavigationLink(destination: DetailNoteView()){
+        NavigationLink(destination: DetailNoteView(note: note)){
             HStack {
                 Image(systemName: note.icon)
-                Text(note.name)
+                    .foregroundColor(Color(hex: "\(note.color)"))
+                Text(note.title)
                 Spacer()
-                if note.notesItems.count > 0 {
-                    Text("\(note.notesItems.count)")
+                if note.items.count > 0 {
+                    Text("\(note.items.count)")
                 }
             }
         }
@@ -21,7 +22,7 @@ struct NoteRow: View {
 #Preview {
     NavigationStack {
         List{
-            NoteRow(note: .init(id: UUID().uuidString, name: "Test", icon: "list.bullet", color: "#62de13", notesItems: []))
+            NoteRow(note: .init(id: UUID().uuidString, title: "Test", icon: "list.bullet", color: "#62de13", items: []))
         }
     }
 }

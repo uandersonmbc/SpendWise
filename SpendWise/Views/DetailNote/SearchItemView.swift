@@ -1,18 +1,51 @@
-//
-//  SearchItemView.swift
-//  SpendWise
-//
-//  Created by Uanderson on 20/08/23.
-//
-
 import SwiftUI
 
 struct SearchItemView: View {
+    @Environment(\.colorScheme) var colorScheme
+    @StateObject var note = NoteService.shared
+    var color: String
+    var id: String
+    @State private var itemName = ""
     var body: some View {
-        Text(/*@START_MENU_TOKEN@*/"Hello, World!"/*@END_MENU_TOKEN@*/)
+        VStack{
+            VStack{
+                TextField("Title", text: $itemName)
+                    .padding()
+                    .font(.title)
+                    .frame(maxWidth: .infinity)
+                    .foregroundColor(Color(hex: color))
+                    .background(Color("bg.grid.sub"))
+                    .cornerRadius(10)
+                    .multilineTextAlignment(.center)
+            }
+            .padding()
+            ScrollView {
+                ForEach(0..<5) { index in
+                    VStack{
+                        Text("Item \(index)")
+                            .padding()
+                    }
+                    .frame(maxWidth: .infinity)
+                }
+                .frame(maxWidth: .infinity)
+                Button {
+                    Task {
+                        note.updateNote(id: id)
+                    }
+                } label: {
+                    Text("add")
+                }
+            }
+        }
+        .frame(maxHeight: .infinity)
+        .background(colorScheme == .light ? Color(hex: color)?.opacity(0.2) : Color.clear)
+        .ignoresSafeArea()
+        .onTapGesture {
+            self.hideKeyboard()
+        }
     }
 }
 
 #Preview {
-    SearchItemView()
+    SearchItemView(color: "#3e42ed", id: "")
 }

@@ -1,6 +1,6 @@
 import Foundation
 
-struct CommercialEntity: Identifiable {
+struct CommercialEntity: Decodable, Identifiable {
     var id: String
     var name: String
 }

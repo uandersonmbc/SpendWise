@@ -1,6 +1,6 @@
 import Foundation
 
-struct NoteItem: Identifiable {
+struct NoteItem: Decodable, Identifiable {
     var id: String
     var quantity: Int
     

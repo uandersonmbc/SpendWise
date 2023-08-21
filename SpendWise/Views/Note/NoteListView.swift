@@ -7,7 +7,7 @@ enum DisplayMode {
 }
 
 struct NoteListView: View {
-    @StateObject var homeViewModel = NoteListViewModel()
+    @StateObject var note = NoteService.shared
     @State var isOpenCreateList = false
     @State private var displayMode: DisplayMode = .grid
     
@@ -33,12 +33,10 @@ struct NoteListView: View {
                                 .cornerRadius(5)
                         }
                     }){
-                        ForEach(homeViewModel.notes) { note in
+                        ForEach(note.notes) { note in
                             NoteRow(note: note)
                         }
-                        .onDelete(perform: { indexSet in
-                            
-                        })
+                        .onDelete(perform: deleteNote)
                     }
                 }
             } else {
@@ -65,7 +63,7 @@ struct NoteListView: View {
                         .padding(.horizontal, 20)
                         
                         LazyVGrid(columns: columns, spacing: 15) {
-                            ForEach(homeViewModel.notes) { note in
+                            ForEach(note.notes) { note in
                                 NoteGrid(note: note)
                                     .contextMenu {
                                         Text("Show List Info")
@@ -93,16 +91,17 @@ struct NoteListView: View {
         }
         .sheet(isPresented: $isOpenCreateList){
             VStack{
-                Text("Test")
-                Button{
-                    Task {
-                        homeViewModel.createNote()
-                    }
-                } label: {
-                    Text("Add")
-                }
+                NoteCreateView(isOpenCreateList: $isOpenCreateList)
+                    .interactiveDismissDisabled(true)
             }
         }
+        .onAppear{
+            note.getData()
+        }
+    }
+    
+    func deleteNote(at offset: IndexSet) {
+        note.removeNote(offset: offset)
     }
 }
 

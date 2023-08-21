@@ -1,3 +1,7 @@
+**/Configs.swift
+
+
 *.xcodeproj/xcuserdata
 *.xcodeproj/*.xcworkspace
+
 .DS_Store

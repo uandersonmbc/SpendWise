@@ -7,7 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		01520AFB2A8EC08A0037271C /* Spend_WiseApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 01520AFA2A8EC08A0037271C /* Spend_WiseApp.swift */; };
+		01520AFB2A8EC08A0037271C /* SpendWiseApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 01520AFA2A8EC08A0037271C /* SpendWiseApp.swift */; };
 		01520AFD2A8EC08A0037271C /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 01520AFC2A8EC08A0037271C /* ContentView.swift */; };
 		01520AFF2A8EC08D0037271C /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 01520AFE2A8EC08D0037271C /* Assets.xcassets */; };
 		01520B022A8EC08D0037271C /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 01520B012A8EC08D0037271C /* Preview Assets.xcassets */; };
@@ -17,18 +17,30 @@
 		01520B112A8EC9F10037271C /* CommercialEntity.swift in Sources */ = {isa = PBXBuildFile; fileRef = 01520B102A8EC9F10037271C /* CommercialEntity.swift */; };
 		01520B132A8ECA2A0037271C /* NoteItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 01520B122A8ECA2A0037271C /* NoteItem.swift */; };
 		01520B172A8ECF190037271C /* HomeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 01520B162A8ECF190037271C /* HomeView.swift */; };
-		01520B192A8ECFB80037271C /* NoteListViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 01520B182A8ECFB80037271C /* NoteListViewModel.swift */; };
+		01520B192A8ECFB80037271C /* NoteViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 01520B182A8ECFB80037271C /* NoteViewModel.swift */; };
 		01520B1C2A8EDB410037271C /* NoteListView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 01520B1B2A8EDB410037271C /* NoteListView.swift */; };
 		01520B1F2A8F2CAA0037271C /* Helpers.swift in Sources */ = {isa = PBXBuildFile; fileRef = 01520B1E2A8F2CAA0037271C /* Helpers.swift */; };
 		01520B222A8F2D5B0037271C /* ColorExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 01520B212A8F2D5B0037271C /* ColorExtension.swift */; };
 		01520B252A8FDA660037271C /* DetailNoteView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 01520B242A8FDA660037271C /* DetailNoteView.swift */; };
 		01520B472A8FDFED0037271C /* NoteRow.swift in Sources */ = {isa = PBXBuildFile; fileRef = 01520B462A8FDFED0037271C /* NoteRow.swift */; };
 		01520B492A8FE0310037271C /* NoteGrid.swift in Sources */ = {isa = PBXBuildFile; fileRef = 01520B482A8FE0310037271C /* NoteGrid.swift */; };
+		0154351D2A93BE7C00251154 /* APIService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0154351C2A93BE7C00251154 /* APIService.swift */; };
+		0154351F2A93C2CE00251154 /* Configs.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0154351E2A93C2CE00251154 /* Configs.swift */; };
+		0195B6A72A906762001AB168 /* NoteCreateView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0195B6A62A906762001AB168 /* NoteCreateView.swift */; };
+		0195B6AA2A906ABB001AB168 /* ListIcons.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0195B6A92A906ABB001AB168 /* ListIcons.swift */; };
+		0195B6AC2A907580001AB168 /* HideKeyboardExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0195B6AB2A907580001AB168 /* HideKeyboardExtension.swift */; };
+		0195B6AF2A907790001AB168 /* Colors.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0195B6AE2A907790001AB168 /* Colors.swift */; };
+		0195B6B12A9077D2001AB168 /* Icons.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0195B6B02A9077D2001AB168 /* Icons.swift */; };
+		01F8F91D2A915EE000366653 /* NoteService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 01F8F91C2A915EE000366653 /* NoteService.swift */; };
+		01F8F9212A9283C700366653 /* DailyDealsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 01F8F9202A9283C700366653 /* DailyDealsView.swift */; };
+		01F8F9232A9283DA00366653 /* CommercialView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 01F8F9222A9283DA00366653 /* CommercialView.swift */; };
+		01F8F9252A92897C00366653 /* Blur.swift in Sources */ = {isa = PBXBuildFile; fileRef = 01F8F9242A92897C00366653 /* Blur.swift */; };
+		01F8F9272A92AC8800366653 /* SearchItemView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 01F8F9262A92AC8800366653 /* SearchItemView.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
-		01520AF72A8EC08A0037271C /* SpendWise.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "SpendWise.app"; sourceTree = BUILT_PRODUCTS_DIR; };
-		01520AFA2A8EC08A0037271C /* Spend_WiseApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Spend_WiseApp.swift; sourceTree = "<group>"; };
+		01520AF72A8EC08A0037271C /* Spend Wise.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Spend Wise.app"; sourceTree = BUILT_PRODUCTS_DIR; };
+		01520AFA2A8EC08A0037271C /* SpendWiseApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SpendWiseApp.swift; sourceTree = "<group>"; };
 		01520AFC2A8EC08A0037271C /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
 		01520AFE2A8EC08D0037271C /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		01520B012A8EC08D0037271C /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
@@ -38,13 +50,25 @@
 		01520B102A8EC9F10037271C /* CommercialEntity.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CommercialEntity.swift; sourceTree = "<group>"; };
 		01520B122A8ECA2A0037271C /* NoteItem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NoteItem.swift; sourceTree = "<group>"; };
 		01520B162A8ECF190037271C /* HomeView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeView.swift; sourceTree = "<group>"; };
-		01520B182A8ECFB80037271C /* NoteListViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NoteListViewModel.swift; sourceTree = "<group>"; };
+		01520B182A8ECFB80037271C /* NoteViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NoteViewModel.swift; sourceTree = "<group>"; };
 		01520B1B2A8EDB410037271C /* NoteListView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NoteListView.swift; sourceTree = "<group>"; };
 		01520B1E2A8F2CAA0037271C /* Helpers.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Helpers.swift; sourceTree = "<group>"; };
 		01520B212A8F2D5B0037271C /* ColorExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ColorExtension.swift; sourceTree = "<group>"; };
 		01520B242A8FDA660037271C /* DetailNoteView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailNoteView.swift; sourceTree = "<group>"; };
 		01520B462A8FDFED0037271C /* NoteRow.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NoteRow.swift; sourceTree = "<group>"; };
 		01520B482A8FE0310037271C /* NoteGrid.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NoteGrid.swift; sourceTree = "<group>"; };
+		0154351C2A93BE7C00251154 /* APIService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = APIService.swift; sourceTree = "<group>"; };
+		0154351E2A93C2CE00251154 /* Configs.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Configs.swift; sourceTree = "<group>"; };
+		0195B6A62A906762001AB168 /* NoteCreateView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NoteCreateView.swift; sourceTree = "<group>"; };
+		0195B6A92A906ABB001AB168 /* ListIcons.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ListIcons.swift; sourceTree = "<group>"; };
+		0195B6AB2A907580001AB168 /* HideKeyboardExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HideKeyboardExtension.swift; sourceTree = "<group>"; };
+		0195B6AE2A907790001AB168 /* Colors.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Colors.swift; sourceTree = "<group>"; };
+		0195B6B02A9077D2001AB168 /* Icons.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Icons.swift; sourceTree = "<group>"; };
+		01F8F91C2A915EE000366653 /* NoteService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NoteService.swift; sourceTree = "<group>"; };
+		01F8F9202A9283C700366653 /* DailyDealsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DailyDealsView.swift; sourceTree = "<group>"; };
+		01F8F9222A9283DA00366653 /* CommercialView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CommercialView.swift; sourceTree = "<group>"; };
+		01F8F9242A92897C00366653 /* Blur.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Blur.swift; sourceTree = "<group>"; };
+		01F8F9262A92AC8800366653 /* SearchItemView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchItemView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -69,7 +93,7 @@
 		01520AF82A8EC08A0037271C /* Products */ = {
 			isa = PBXGroup;
 			children = (
-				01520AF72A8EC08A0037271C /* SpendWise.app */,
+				01520AF72A8EC08A0037271C /* Spend Wise.app */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -77,16 +101,19 @@
 		01520AF92A8EC08A0037271C /* SpendWise */ = {
 			isa = PBXGroup;
 			children = (
+				01F8F91B2A915EC700366653 /* Services */,
+				0195B6AD2A90770A001AB168 /* Constants */,
 				01520B262A8FDB290037271C /* Components */,
 				01520B202A8F2D1D0037271C /* Extensions */,
 				01520B1D2A8F2C750037271C /* Utils */,
 				01520B092A8EC0D60037271C /* Views */,
 				01520B082A8EC0CE0037271C /* Models */,
-				01520AFA2A8EC08A0037271C /* Spend_WiseApp.swift */,
+				01520AFA2A8EC08A0037271C /* SpendWiseApp.swift */,
 				01520AFE2A8EC08D0037271C /* Assets.xcassets */,
 				01520B002A8EC08D0037271C /* Preview Content */,
+				0154351E2A93C2CE00251154 /* Configs.swift */,
 			);
-			path = "SpendWise";
+			path = SpendWise;
 			sourceTree = "<group>";
 		};
 		01520B002A8EC08D0037271C /* Preview Content */ = {
@@ -112,8 +139,10 @@
 		01520B092A8EC0D60037271C /* Views */ = {
 			isa = PBXGroup;
 			children = (
+				01F8F91F2A92838200366653 /* DailyDeals */,
+				01F8F91E2A92837000366653 /* Commercial */,
 				01520B232A8FDA1D0037271C /* DetailNote */,
-				01520B1A2A8EDB210037271C /* NoteList */,
+				01520B1A2A8EDB210037271C /* Note */,
 				01520B152A8ECEDE0037271C /* Home */,
 				01520B142A8ECECC0037271C /* Root */,
 			);
@@ -136,13 +165,14 @@
 			path = Home;
 			sourceTree = "<group>";
 		};
-		01520B1A2A8EDB210037271C /* NoteList */ = {
+		01520B1A2A8EDB210037271C /* Note */ = {
 			isa = PBXGroup;
 			children = (
 				01520B1B2A8EDB410037271C /* NoteListView.swift */,
-				01520B182A8ECFB80037271C /* NoteListViewModel.swift */,
+				01520B182A8ECFB80037271C /* NoteViewModel.swift */,
+				0195B6A62A906762001AB168 /* NoteCreateView.swift */,
 			);
-			path = NoteList;
+			path = Note;
 			sourceTree = "<group>";
 		};
 		01520B1D2A8F2C750037271C /* Utils */ = {
@@ -157,6 +187,7 @@
 			isa = PBXGroup;
 			children = (
 				01520B212A8F2D5B0037271C /* ColorExtension.swift */,
+				0195B6AB2A907580001AB168 /* HideKeyboardExtension.swift */,
 			);
 			path = Extensions;
 			sourceTree = "<group>";
@@ -165,6 +196,7 @@
 			isa = PBXGroup;
 			children = (
 				01520B242A8FDA660037271C /* DetailNoteView.swift */,
+				01F8F9262A92AC8800366653 /* SearchItemView.swift */,
 			);
 			path = DetailNote;
 			sourceTree = "<group>";
@@ -174,8 +206,44 @@
 			children = (
 				01520B462A8FDFED0037271C /* NoteRow.swift */,
 				01520B482A8FE0310037271C /* NoteGrid.swift */,
+				0195B6A92A906ABB001AB168 /* ListIcons.swift */,
+				01F8F9242A92897C00366653 /* Blur.swift */,
 			);
 			path = Components;
+			sourceTree = "<group>";
+		};
+		0195B6AD2A90770A001AB168 /* Constants */ = {
+			isa = PBXGroup;
+			children = (
+				0195B6AE2A907790001AB168 /* Colors.swift */,
+				0195B6B02A9077D2001AB168 /* Icons.swift */,
+			);
+			path = Constants;
+			sourceTree = "<group>";
+		};
+		01F8F91B2A915EC700366653 /* Services */ = {
+			isa = PBXGroup;
+			children = (
+				01F8F91C2A915EE000366653 /* NoteService.swift */,
+				0154351C2A93BE7C00251154 /* APIService.swift */,
+			);
+			path = Services;
+			sourceTree = "<group>";
+		};
+		01F8F91E2A92837000366653 /* Commercial */ = {
+			isa = PBXGroup;
+			children = (
+				01F8F9222A9283DA00366653 /* CommercialView.swift */,
+			);
+			path = Commercial;
+			sourceTree = "<group>";
+		};
+		01F8F91F2A92838200366653 /* DailyDeals */ = {
+			isa = PBXGroup;
+			children = (
+				01F8F9202A9283C700366653 /* DailyDealsView.swift */,
+			);
+			path = DailyDeals;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -193,9 +261,9 @@
 			);
 			dependencies = (
 			);
-			name = "SpendWise";
-			productName = "SpendWise";
-			productReference = 01520AF72A8EC08A0037271C /* SpendWise.app */;
+			name = SpendWise;
+			productName = SpendWise;
+			productReference = 01520AF72A8EC08A0037271C /* Spend Wise.app */;
 			productType = "com.apple.product-type.application";
 		};
 /* End PBXNativeTarget section */
@@ -249,20 +317,32 @@
 			buildActionMask = 2147483647;
 			files = (
 				01520B0B2A8EC9880037271C /* Item.swift in Sources */,
-				01520B192A8ECFB80037271C /* NoteListViewModel.swift in Sources */,
+				01520B192A8ECFB80037271C /* NoteViewModel.swift in Sources */,
 				01520B1C2A8EDB410037271C /* NoteListView.swift in Sources */,
+				01F8F9272A92AC8800366653 /* SearchItemView.swift in Sources */,
 				01520B222A8F2D5B0037271C /* ColorExtension.swift in Sources */,
+				0195B6AA2A906ABB001AB168 /* ListIcons.swift in Sources */,
+				0195B6A72A906762001AB168 /* NoteCreateView.swift in Sources */,
 				01520B492A8FE0310037271C /* NoteGrid.swift in Sources */,
+				0154351F2A93C2CE00251154 /* Configs.swift in Sources */,
 				01520B252A8FDA660037271C /* DetailNoteView.swift in Sources */,
 				01520B0D2A8EC9A00037271C /* Note.swift in Sources */,
 				01520B1F2A8F2CAA0037271C /* Helpers.swift in Sources */,
 				01520B0F2A8EC9C60037271C /* CommercialEntityItem.swift in Sources */,
+				01F8F9252A92897C00366653 /* Blur.swift in Sources */,
 				01520B472A8FDFED0037271C /* NoteRow.swift in Sources */,
+				01F8F9212A9283C700366653 /* DailyDealsView.swift in Sources */,
+				0195B6AF2A907790001AB168 /* Colors.swift in Sources */,
 				01520B132A8ECA2A0037271C /* NoteItem.swift in Sources */,
+				01F8F91D2A915EE000366653 /* NoteService.swift in Sources */,
 				01520AFD2A8EC08A0037271C /* ContentView.swift in Sources */,
+				0195B6AC2A907580001AB168 /* HideKeyboardExtension.swift in Sources */,
 				01520B172A8ECF190037271C /* HomeView.swift in Sources */,
 				01520B112A8EC9F10037271C /* CommercialEntity.swift in Sources */,
-				01520AFB2A8EC08A0037271C /* Spend_WiseApp.swift in Sources */,
+				0154351D2A93BE7C00251154 /* APIService.swift in Sources */,
+				0195B6B12A9077D2001AB168 /* Icons.swift in Sources */,
+				01520AFB2A8EC08A0037271C /* SpendWiseApp.swift in Sources */,
+				01F8F9232A9283DA00366653 /* CommercialView.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -402,18 +482,22 @@
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
-				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
-				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				INFOPLIST_KEY_UISupportedInterfaceOrientations = UIInterfaceOrientationPortrait;
+				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown";
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
 				MARKETING_VERSION = 1.0;
 				PRODUCT_BUNDLE_IDENTIFIER = "com.spend.wise.Spend-Wise";
-				PRODUCT_NAME = "$(TARGET_NAME)";
+				PRODUCT_NAME = "Spend Wise";
+				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator";
+				SUPPORTS_MACCATALYST = NO;
+				SUPPORTS_MAC_DESIGNED_FOR_IPHONE_IPAD = NO;
+				SUPPORTS_XR_DESIGNED_FOR_IPHONE_IPAD = NO;
 				SWIFT_EMIT_LOC_STRINGS = YES;
 				SWIFT_VERSION = 5.0;
-				TARGETED_DEVICE_FAMILY = "1,2";
+				TARGETED_DEVICE_FAMILY = 1;
 			};
 			name = Debug;
 		};
@@ -431,18 +515,22 @@
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
-				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
-				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				INFOPLIST_KEY_UISupportedInterfaceOrientations = UIInterfaceOrientationPortrait;
+				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown";
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
 				MARKETING_VERSION = 1.0;
 				PRODUCT_BUNDLE_IDENTIFIER = "com.spend.wise.Spend-Wise";
-				PRODUCT_NAME = "$(TARGET_NAME)";
+				PRODUCT_NAME = "Spend Wise";
+				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator";
+				SUPPORTS_MACCATALYST = NO;
+				SUPPORTS_MAC_DESIGNED_FOR_IPHONE_IPAD = NO;
+				SUPPORTS_XR_DESIGNED_FOR_IPHONE_IPAD = NO;
 				SWIFT_EMIT_LOC_STRINGS = YES;
 				SWIFT_VERSION = 5.0;
-				TARGETED_DEVICE_FAMILY = "1,2";
+				TARGETED_DEVICE_FAMILY = 1;
 			};
 			name = Release;
 		};

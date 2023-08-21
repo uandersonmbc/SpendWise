@@ -6,7 +6,7 @@ struct NoteGrid: View {
     var preview = false
     
     var body: some View {
-        NavigationLink(destination: DetailNoteView()){
+        NavigationLink(destination: DetailNoteView(note: note)){
             VStack{
                 VStack{
                     HStack {
@@ -15,8 +15,8 @@ struct NoteGrid: View {
                             .fontWeight(.bold)
                             .font(.system(size: 20))
                         Spacer()
-                        if note.notesItems.count > 0 {
-                            Text("\(note.notesItems.count)")
+                        if note.items.count > 0 {
+                            Text("\(note.items.count)")
                                 .font(.title)
                                 .fontWeight(.bold)
                         }
@@ -24,7 +24,7 @@ struct NoteGrid: View {
                     .padding(.horizontal, 10)
                     .padding(.top, 10)
                     HStack {
-                        Text(note.name)
+                        Text(note.title)
                             .foregroundColor(Color(hex: "\(note.color)"))
                             .fontWeight(.bold)
                             .multilineTextAlignment(.leading)
@@ -33,10 +33,10 @@ struct NoteGrid: View {
                     .padding(.horizontal, 10)
                     .padding(.bottom, 10)
                     
-                    if !note.notesItems.isEmpty {
+                    if !note.items.isEmpty {
                         VStack {
                             VStack{
-                                ForEach(note.notesItems.prefix(preview ? note.notesItems.count : 3)){ noteItem in
+                                ForEach(note.items.prefix(preview ? note.items.count : 3)){ noteItem in
                                     HStack {
                                         Circle()
                                             .foregroundColor(Color(hex: "\(note.color)"))
@@ -75,7 +75,7 @@ struct NoteGrid: View {
 #Preview {
     NavigationStack {
         ScrollView {
-            NoteGrid(note: .init(id: UUID().uuidString, name: "Test", icon: "list.bullet", color: "#234ed4", notesItems: []))
+            NoteGrid(note: .init(id: UUID().uuidString, title: "Test", icon: "list.bullet", color: "#234ed4", items: []))
         }
     }
 }

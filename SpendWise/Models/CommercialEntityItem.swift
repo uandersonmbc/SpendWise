@@ -1,8 +1,8 @@
 import Foundation
 
-struct CommercialEntityItem: Identifiable {
+struct CommercialEntityItem: Decodable, Identifiable {
     var id: String
     var price: Int
     
-    var commercialEntity: CommercialEntity
+    var commercialentity: CommercialEntity
 }
