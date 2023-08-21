@@ -1,7 +1,7 @@
 import SwiftUI
 
 @main
-struct Spend_WiseApp: App {
+struct SpendWiseApp: App {
     var body: some Scene {
         WindowGroup {
             ContentView()
