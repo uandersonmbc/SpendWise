@@ -4,8 +4,9 @@ import UIKit
 struct NoteCreateView: View {
     @Environment(\.colorScheme) var colorScheme
     @StateObject var note = NoteService.shared
-    @State private var title = ""
-    @State private var selectedColor = colors[0]
+    @Binding var noteEdit: Note?
+    @State private var title: String = ""
+    @State private var selectedColor: String = colors[0]
     @State private var selectedIcon: String = systemIcons[0]
     @Binding var isOpenCreateList: Bool
     let columns = [GridItem(.adaptive(minimum: 40), spacing: 15)]
@@ -16,6 +17,7 @@ struct NoteCreateView: View {
                 HStack{
                     Button{
                         isOpenCreateList.toggle()
+                        noteEdit = nil
                     } label: {
                         Image(systemName: "x.circle")
                             .font(.title2)
@@ -31,11 +33,36 @@ struct NoteCreateView: View {
                     
                     Button{
                         Task {
-                            do {
-                                try await note.createNote(note: Note(id: UUID().uuidString, title: title, icon: selectedIcon, color: selectedColor, items: []))
-                                isOpenCreateList.toggle()
-                            } catch {
-                                print(error)
+                            let notePayload = NotePayload(title: title, icon: selectedIcon, color: selectedColor, user_id: user_id)
+                            if let jsonData = try? JSONEncoder().encode(notePayload) {
+                                if noteEdit == nil {
+                                    APIService().post(endpoint: "/notes", body: jsonData) { (result: Result<Note, Error>) in
+                                        switch result {
+                                        case .success(let response):
+                                            DispatchQueue.main.async {
+                                                note.notes.append(response)
+                                                isOpenCreateList.toggle()
+                                            }
+                                        case .failure(let error):
+                                            print("\(error)")
+                                        }
+                                    }
+                                } else {
+                                    let path = "/notes/\(noteEdit?.id ?? "")"
+                                    APIService().put(endpoint: path, body: jsonData) { (result: Result<Note, Error>) in
+                                        switch result {
+                                        case .success(let response):
+                                            DispatchQueue.main.async {
+                                                if let index = note.notes.firstIndex(where: { $0.id == noteEdit?.id }) {
+                                                    note.notes[index] = response
+                                                }
+                                                isOpenCreateList.toggle()
+                                            }
+                                        case .failure(let error):
+                                            print("\(error)")
+                                        }
+                                    }
+                                }
                             }
                         }
                         
@@ -106,6 +133,13 @@ struct NoteCreateView: View {
         .onTapGesture {
             self.hideKeyboard()
         }
+        .onAppear{
+            if noteEdit != nil {
+                title = noteEdit?.title ?? ""
+                selectedIcon = noteEdit?.icon ?? colors[0]
+                selectedColor = noteEdit?.color ?? systemIcons[0]
+            }
+        }
     }
     
     func generateHapticFeedback() {
@@ -116,5 +150,5 @@ struct NoteCreateView: View {
 }
 
 #Preview {
-    NoteCreateView(isOpenCreateList: .constant(true))
+    NoteCreateView(noteEdit: .constant(nil), isOpenCreateList: .constant(true))
 }

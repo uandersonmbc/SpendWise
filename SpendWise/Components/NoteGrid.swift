@@ -45,6 +45,7 @@ struct NoteGrid: View {
                                             .font(.system(size: 12))
                                             .fontWeight(.bold)
                                             .padding(-4)
+                                            .lineLimit(1)
                                     }
                                     .padding(.horizontal, 6)
                                     .frame(maxWidth: .infinity,alignment: .leading)

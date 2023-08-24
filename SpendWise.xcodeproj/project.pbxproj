@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		0145F30B2A97A718006F611A /* EditItemQuantity.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0145F30A2A97A717006F611A /* EditItemQuantity.swift */; };
+		014987DD2A94F7390074925F /* ItemRowCount.swift in Sources */ = {isa = PBXBuildFile; fileRef = 014987DC2A94F7390074925F /* ItemRowCount.swift */; };
 		01520AFB2A8EC08A0037271C /* SpendWiseApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 01520AFA2A8EC08A0037271C /* SpendWiseApp.swift */; };
 		01520AFD2A8EC08A0037271C /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 01520AFC2A8EC08A0037271C /* ContentView.swift */; };
 		01520AFF2A8EC08D0037271C /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 01520AFE2A8EC08D0037271C /* Assets.xcassets */; };
@@ -39,6 +41,8 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		0145F30A2A97A717006F611A /* EditItemQuantity.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditItemQuantity.swift; sourceTree = "<group>"; };
+		014987DC2A94F7390074925F /* ItemRowCount.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ItemRowCount.swift; sourceTree = "<group>"; };
 		01520AF72A8EC08A0037271C /* Spend Wise.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Spend Wise.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		01520AFA2A8EC08A0037271C /* SpendWiseApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SpendWiseApp.swift; sourceTree = "<group>"; };
 		01520AFC2A8EC08A0037271C /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
@@ -208,6 +212,8 @@
 				01520B482A8FE0310037271C /* NoteGrid.swift */,
 				0195B6A92A906ABB001AB168 /* ListIcons.swift */,
 				01F8F9242A92897C00366653 /* Blur.swift */,
+				014987DC2A94F7390074925F /* ItemRowCount.swift */,
+				0145F30A2A97A717006F611A /* EditItemQuantity.swift */,
 			);
 			path = Components;
 			sourceTree = "<group>";
@@ -321,11 +327,13 @@
 				01520B1C2A8EDB410037271C /* NoteListView.swift in Sources */,
 				01F8F9272A92AC8800366653 /* SearchItemView.swift in Sources */,
 				01520B222A8F2D5B0037271C /* ColorExtension.swift in Sources */,
+				014987DD2A94F7390074925F /* ItemRowCount.swift in Sources */,
 				0195B6AA2A906ABB001AB168 /* ListIcons.swift in Sources */,
 				0195B6A72A906762001AB168 /* NoteCreateView.swift in Sources */,
 				01520B492A8FE0310037271C /* NoteGrid.swift in Sources */,
 				0154351F2A93C2CE00251154 /* Configs.swift in Sources */,
 				01520B252A8FDA660037271C /* DetailNoteView.swift in Sources */,
+				0145F30B2A97A718006F611A /* EditItemQuantity.swift in Sources */,
 				01520B0D2A8EC9A00037271C /* Note.swift in Sources */,
 				01520B1F2A8F2CAA0037271C /* Helpers.swift in Sources */,
 				01520B0F2A8EC9C60037271C /* CommercialEntityItem.swift in Sources */,

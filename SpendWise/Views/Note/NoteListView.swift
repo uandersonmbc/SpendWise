@@ -1,22 +1,18 @@
 import SwiftUI
 
-
-enum DisplayMode {
-    case list
-    case grid
-}
-
 struct NoteListView: View {
     @StateObject var note = NoteService.shared
+    
     @State var isOpenCreateList = false
-    @State private var displayMode: DisplayMode = .grid
+    @State var selectedNode: Note?
+    @AppStorage("displayMode") var displayMode: String = "grid"
     
     let columns: [GridItem] = Array(repeating: .init(.flexible(), spacing: 15), count: 2)
     
     @Namespace var animation
     var body: some View {
         VStack {
-            if displayMode == .list {
+            if displayMode == "list" {
                 List{
                     Section(header: HStack {
                         Text("My lists")
@@ -35,9 +31,20 @@ struct NoteListView: View {
                     }){
                         ForEach(note.notes) { note in
                             NoteRow(note: note)
+                                .contextMenu(ContextMenu(menuItems: {
+                                    Button{
+                                        selectedNode = note
+                                        isOpenCreateList.toggle()
+                                    } label: {
+                                        Label("Edit List", systemImage: "pencil")
+                                    }
+                                }))
                         }
                         .onDelete(perform: deleteNote)
                     }
+                }
+                .refreshable {
+                    note.getData()
                 }
             } else {
                 ScrollView {
@@ -66,8 +73,17 @@ struct NoteListView: View {
                             ForEach(note.notes) { note in
                                 NoteGrid(note: note)
                                     .contextMenu {
-                                        Text("Show List Info")
-                                        Text("Delete")
+                                        Button{
+                                            selectedNode = note
+                                            isOpenCreateList.toggle()
+                                        } label: {
+                                            Label("Edit List", systemImage: "pencil")
+                                        }
+                                        Button{
+                                            deleteNote(noteRemove: note)
+                                        } label: {
+                                            Label("Delte", systemImage: "trash")
+                                        }
                                     } preview: {
                                         NoteGrid(note: note, preview: true)
                                     }
@@ -76,14 +92,17 @@ struct NoteListView: View {
                     }
                     .padding(20)
                 }
+                .refreshable {
+                    note.getData()
+                }
             }
         }
         .animation(.default, value: displayMode)
         .toolbar {
             ToolbarItemGroup {
                 Picker("Display Mode", selection: $displayMode) {
-                    Image(systemName: "list.bullet").tag(DisplayMode.list)
-                    Image(systemName: "rectangle.grid.2x2").tag(DisplayMode.grid)
+                    Image(systemName: "list.bullet").tag("list")
+                    Image(systemName: "rectangle.grid.2x2").tag("grid")
                 }
                 .pickerStyle(SegmentedPickerStyle())
                 .frame(width: 100)
@@ -91,7 +110,7 @@ struct NoteListView: View {
         }
         .sheet(isPresented: $isOpenCreateList){
             VStack{
-                NoteCreateView(isOpenCreateList: $isOpenCreateList)
+                NoteCreateView(noteEdit: $selectedNode, isOpenCreateList: $isOpenCreateList)
                     .interactiveDismissDisabled(true)
             }
         }
@@ -100,8 +119,36 @@ struct NoteListView: View {
         }
     }
     
+    func deleteNote(noteRemove: Note) {
+        if let index = note.notes.firstIndex(where: { $0.id == noteRemove.id }) {
+            let path = "/notes/\(noteRemove.id)"
+            APIService().get(endpoint: path) { (result: Result<NoteDelete, Error>) in
+                switch result {
+                case .success(_):
+                    DispatchQueue.main.async {
+                        note.notes.remove(at: index)
+                    }
+                case .failure(_):
+                    note.notes = note.notes
+                }
+            }
+        }
+    }
+    
     func deleteNote(at offset: IndexSet) {
-        note.removeNote(offset: offset)
+        let index = offset.first!
+        let noteRemove = note.notes[index]
+        let path = "/notes/\(noteRemove.id)"
+        APIService().get(endpoint: path) { (result: Result<NoteDelete, Error>) in
+            switch result {
+            case .success(_):
+                DispatchQueue.main.async {
+                    note.notes.remove(atOffsets: offset)
+                }
+            case .failure(_):
+                note.notes = note.notes
+            }
+        }
     }
 }
 

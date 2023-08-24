@@ -6,11 +6,15 @@ struct DetailNoteView: View {
     @State private var openAddItem = false
     @State private var compledtedItems: [String] = []
     
+    @StateObject var noteS = NoteService.shared
+    
     @State private var isOpenAddItems = false
     
     var totalValue: Double {
-        Double(note.items.reduce(0, { x, y in x + (y.item.commercials[0].price * y.quantity)}))
+        Double(note.items.reduce(0, { x, y in x + ((y.item.commercials.first?.price ?? 0) * y.quantity)}))
     }
+    
+    @State private var editItem = false
     
     var body: some View {
         ZStack {
@@ -24,42 +28,86 @@ struct DetailNoteView: View {
                     
                     Section {
                         ForEach(note.items.filter { !compledtedItems.contains($0.id) }){ item in
-                            HStack{
-                                Button {
-                                    withAnimation{
-                                        compledtedItems.append(item.id)
+                            DisclosureGroup {
+                                VStack{
+                                    ForEach(0..<item.item.commercials.count, id: \.self){ index in
+                                        HStack{
+                                            Text("\(item.item.commercials[index].commercialentity.name)")
+                                            Spacer()
+                                            Text("R$ \(formatNumberToDecimal(value: Double(item.item.commercials[index].price) / 100))")
+                                        }
+                                        .foregroundColor((index == 0) ? Color.green : Color.primary )
                                     }
-                                } label: {
-                                    Image(systemName: "circle").foregroundColor(Color(hex: "\(note.color)"))
                                 }
-                                Text("\(item.quantity) - \(item.item.name)")
-                                Spacer()
-                                Text("R$ \(formatNumberToDecimal(value: Double(item.item.commercials[0].price) / 100))")
+                            } label: {
+                                HStack{
+                                    Button {
+                                        withAnimation{
+                                            compledtedItems.append(item.id)
+                                        }
+                                    } label: {
+                                        Image(systemName: "circle").foregroundColor(Color(hex: "\(note.color)"))
+                                    }
+                                    .buttonStyle(.borderless)
+                                    Text("\(item.quantity) - \(item.item.name)")
+                                        .lineLimit(1)
+                                    Spacer()
+                                    Text("R$ \(formatNumberToDecimal(value: Double(item.item.commercials.first?.price ?? 0) / 100))")
+                                }
                             }
                             .padding(.horizontal, -10)
+                            .listRowSeparator(.hidden)
+                            .swipeActions(edge: .trailing, allowsFullSwipe: false){
+                                Button {
+                                    deleteItem(id: item.id)
+                                } label: {
+                                    Label("Delete", systemImage: "trash")
+                                }
+                                .tint(.red)
+                                Button {
+                                    noteS.noteItem = item
+                                    editItem.toggle()
+                                } label: {
+                                    Label("Edit", systemImage: "pencil")
+                                }
+                                .tint(.blue)
+                            }
                         }
-                        .onDelete(perform: deleteItem)
                     }
                     
-                    Section{
+                    Section {
                         ForEach(note.items.filter { compledtedItems.contains($0.id) }){ item in
-                            HStack{
-                                Button{
-                                    withAnimation{
-                                        removeCompleted(item.id)
+                            DisclosureGroup {
+                                VStack{
+                                    ForEach(0..<item.item.commercials.count, id: \.self){ index in
+                                        HStack{
+                                            Text("\(item.item.commercials[index].commercialentity.name)")
+                                            
+                                            Spacer()
+                                            Text("R$ \(formatNumberToDecimal(value: Double(item.item.commercials[index].price) / 100))")
+                                        }
+                                        .foregroundColor((index == 0) ? Color.green : Color.primary )
                                     }
-                                } label: {
-                                    Image(systemName: "checkmark.circle.fill").foregroundColor(Color(hex: "\(note.color)"))
                                 }
-                                Text("\(item.quantity) - \(item.item.name)")
-                                    .opacity(0.4)
-                                Spacer()
-                                Text("R$ \(formatNumberToDecimal(value: Double(item.item.commercials[0].price) / 100))")
-                                    .opacity(0.4)
+                            } label: {
+                                HStack{
+                                    Button {
+                                        withAnimation{
+                                            removeCompleted(item.id)
+                                        }
+                                    } label: {
+                                        Image(systemName: "checkmark.circle.fill").foregroundColor(Color(hex: "\(note.color)"))
+                                    }
+                                    .buttonStyle(.borderless)
+                                    Text("\(item.quantity) - \(item.item.name)").opacity(0.4)
+                                        .lineLimit(1)
+                                    Spacer()
+                                    Text("R$ \(formatNumberToDecimal(value: Double(item.item.commercials.first?.price ?? 0) / 100))")
+                                        .opacity(0.4)
+                                }
                             }
                             .padding(.horizontal, -10)
                         }
-                        .onDelete(perform: deleteItem)
                     }
                 }
             }
@@ -86,13 +134,37 @@ struct DetailNoteView: View {
             
             , alignment: .bottom)
         .sheet(isPresented: $isOpenAddItems, content: {
-            SearchItemView(color: note.color, id: note.id)
+            SearchItemView(color: note.color, id: note.id, isOpenAddItems: $isOpenAddItems)
                 .presentationDetents([.medium, .large])
+                .interactiveDismissDisabled(true)
         })
+        .sheet(isPresented: $editItem) {
+            VStack{
+                EditItemQuantity(editItem: $editItem, color: note.color)
+            }
+            .presentationDetents([.height(100)])
+            .interactiveDismissDisabled(true)
+        }
     }
     
-    func deleteItem(at offsets: IndexSet) {
-        
+    func deleteItem(id: String) {
+        if let indexNote = noteS.notes.firstIndex(where: {$0.id == note.id}) {
+            if let index = note.items.firstIndex(where: { $0.id == id }) {
+                let path = "/notesitems/\(id)"
+                APIService().get(endpoint: path) { (result: Result<NoteDelete, Error>) in
+                    switch result {
+                    case .success(_):
+                        withAnimation{
+                            DispatchQueue.main.async {
+                                noteS.notes[indexNote].items.remove(at: index)
+                            }
+                        }
+                    case .failure(_):
+                        print("Error")
+                    }
+                }
+            }
+        }
     }
     
     func removeCompleted(_ id: String) {
@@ -104,6 +176,10 @@ struct DetailNoteView: View {
 
 #Preview {
     NavigationStack {
-        DetailNoteView(note: .init(id: UUID().uuidString, title: "Jão pede feijao", icon: "sun", color: "#53de42", items: []))
+        DetailNoteView(note: .init(id: UUID().uuidString, title: "Jão pede feijao", icon: "sun", color: "#ff9e1c", items: [
+            NoteItem(id: UUID().uuidString, quantity: 4, item: Item(id: UUID().uuidString, name: "Leite", code: "00", commercials: [
+                CommercialEntityItem(id: UUID().uuidString, price: 423, commercialentity: CommercialEntity(id: UUID().uuidString, name: "Jean"))
+            ]))
+        ]))
     }
 }
